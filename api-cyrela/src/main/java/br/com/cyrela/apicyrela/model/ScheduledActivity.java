@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,12 +24,15 @@ public class ScheduledActivity {
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private String expectedFinalDate;
 	
+	@ManyToOne
+	private Customer customer;
+
+	@ManyToOne
+	private ApartamentUnity unity;
+	
 	private String activityType;
 	
 	private String subject;
-	
-	@OneToOne
-	private Occurrence relatedToOccurrence;
 	
 	private boolean finished;
 	
@@ -73,14 +76,22 @@ public class ScheduledActivity {
 		this.subject = subject;
 	}
 
-	public Occurrence getRelatedToOcurrence() {
-		return relatedToOccurrence;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setRelatedToOcurrence(Occurrence relatedToOccurrence) {
-		this.relatedToOccurrence = relatedToOccurrence;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
-	
+
+	public ApartamentUnity getUnity() {
+		return unity;
+	}
+
+	public void setUnity(ApartamentUnity unity) {
+		this.unity = unity;
+	}
+
 	public boolean isFinished() {
 		return finished;
 	}

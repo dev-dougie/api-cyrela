@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -14,11 +14,8 @@ public class Occurrence {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "occurence")
 	private int ticketId;
 	
-	@ManyToOne
-	private Customer customer;
-
-	@ManyToOne
-	private ApartamentUnity unity;
+	@OneToOne
+	private ScheduledActivity relatedToActivity;
 	
 	private String description;
 	
@@ -29,23 +26,7 @@ public class Occurrence {
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
 	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public ApartamentUnity getUnity() {
-		return unity;
-	}
-
-	public void setUnity(ApartamentUnity unity) {
-		this.unity = unity;
-	}
-
+	
 	public String getDescription() {
 		return description;
 	}
@@ -53,5 +34,15 @@ public class Occurrence {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public ScheduledActivity getRelatedToActivity() {
+		return relatedToActivity;
+	}
+
+	public void setRelatedToActivity(ScheduledActivity relatedToActivity) {
+		this.relatedToActivity = relatedToActivity;
+	}
+	
+	
 
 }

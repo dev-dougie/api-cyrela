@@ -20,7 +20,7 @@ import br.com.cyrela.apicyrela.repository.ScheduledActivityRepository;
 
 @RestController
 @RequestMapping("activity")
-public class ScheduleActivityResource {
+public class ScheduledActivityResource {
 	
 	@Autowired
 	private ScheduledActivityRepository repo;

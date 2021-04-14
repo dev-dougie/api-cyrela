@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cyrela.apicyrela.model.Occurrence;
-import br.com.cyrela.apicyrela.repository.OcurrenceRepository;
+import br.com.cyrela.apicyrela.repository.OccurrenceRepository;
 
 @RestController
 @RequestMapping("occurrence")
 public class OccurenceResource {
 
 	@Autowired
-	private OcurrenceRepository repo;
+	private OccurrenceRepository repo;
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
