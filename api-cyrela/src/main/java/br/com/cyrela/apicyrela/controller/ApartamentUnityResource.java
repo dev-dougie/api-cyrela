@@ -18,7 +18,7 @@ import br.com.cyrela.apicyrela.model.ApartamentUnity;
 import br.com.cyrela.apicyrela.repository.BuildingUnityRepository;
 
 @RestController
-@RequestMapping("unity")
+@RequestMapping("cyrela/unity")
 public class ApartamentUnityResource {
 	
 	@Autowired

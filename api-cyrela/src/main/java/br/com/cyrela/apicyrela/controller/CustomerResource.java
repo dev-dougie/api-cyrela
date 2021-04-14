@@ -18,7 +18,7 @@ import br.com.cyrela.apicyrela.model.Customer;
 import br.com.cyrela.apicyrela.repository.CustomerRepository;
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("cyrela/customer")
 public class CustomerResource {
 	
 	@Autowired

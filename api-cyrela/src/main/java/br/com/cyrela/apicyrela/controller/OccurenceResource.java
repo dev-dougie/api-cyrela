@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,12 +29,6 @@ public class OccurenceResource {
 	public Occurrence create(@RequestBody Occurrence occurrence) {
 		return repo.save(occurrence);
 	}
-	
-	@GetMapping("finished") //http:localhost:8080/occurrence/finished
-	public List<Occurrence> listAllFinished(@RequestParam(defaultValue = "true") boolean finished) {
-        return repo.findByFinished(finished);
-    }
-	
 	
 	@GetMapping
 	public List<Occurrence> getAll(){
@@ -57,4 +50,5 @@ public class OccurenceResource {
 	public void remove(@PathVariable int id) {
 		repo.deleteById(id);
 	}
+
 }

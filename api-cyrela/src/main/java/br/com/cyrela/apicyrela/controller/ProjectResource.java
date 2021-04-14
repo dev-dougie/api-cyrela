@@ -18,20 +18,20 @@ import br.com.cyrela.apicyrela.model.Project;
 import br.com.cyrela.apicyrela.repository.ProjectRepository;
 
 @RestController
-@RequestMapping("project")
+@RequestMapping("cyrela/project")
 public class ProjectResource {
 	
 	@Autowired
 	private ProjectRepository repo;
 	
 	@GetMapping
-	private List<Project> getAll(){
+	public List<Project> getAll(){
 		return repo.findAll();
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	private Project create(@RequestBody Project project) {
+	public Project create(@RequestBody Project project) {
 		return repo.save(project);
 	}
 	
@@ -51,8 +51,8 @@ public class ProjectResource {
 		repo.deleteById(id);
 	}
 	
-	@GetMapping("/costGraterThan={cost}")
-	private List<Project> listAll(@PathVariable double cost) {
+	@GetMapping("/costGreaterThan={cost}")
+	public List<Project> listAll(@PathVariable double cost) {
         return repo.findByCostGreaterThan(cost);
     }
 }

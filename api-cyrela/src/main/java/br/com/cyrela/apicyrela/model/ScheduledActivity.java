@@ -1,13 +1,14 @@
 package br.com.cyrela.apicyrela.model;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 @Entity
 @SequenceGenerator(name = "scheduledActivity", sequenceName = "SQ_SCHED_ACTIV", allocationSize = 1)
@@ -17,16 +18,20 @@ public class ScheduledActivity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "scheduledActivity")
 	private int id;
 	
-	private Date initialDate;
-
-	private Date finalDate;
+	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	private String initialDate;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	private String expectedFinalDate;
 	
 	private String activityType;
 	
 	private String subject;
 	
 	@OneToOne
-	private Occurrence relatedToOcurrence;
+	private Occurrence relatedToOccurrence;
+	
+	private boolean finished;
 	
 	public int getId() {
 		return id;
@@ -36,20 +41,20 @@ public class ScheduledActivity {
 		this.id = id;
 	}
 	
-	public Date getInitialDate() {
+	public String getInitialDate() {
 		return initialDate;
 	}
 
-	public void setInitialDate(Date initialDate) {
+	public void setInitialDate(String initialDate) {
 		this.initialDate = initialDate;
 	}
 
-	public Date getFinalDate() {
-		return finalDate;
+	public String getExpectedFinalDate() {
+		return expectedFinalDate;
 	}
 
-	public void setFinalDate(Date finalDate) {
-		this.finalDate = finalDate;
+	public void setExpectedFinalDate(String expectedFinalDate) {
+		this.expectedFinalDate = expectedFinalDate;
 	}
 
 	public String getActivityType() {
@@ -69,13 +74,20 @@ public class ScheduledActivity {
 	}
 
 	public Occurrence getRelatedToOcurrence() {
-		return relatedToOcurrence;
+		return relatedToOccurrence;
 	}
 
-	public void setRelatedToOcurrence(Occurrence relatedToOcurrence) {
-		this.relatedToOcurrence = relatedToOcurrence;
+	public void setRelatedToOcurrence(Occurrence relatedToOccurrence) {
+		this.relatedToOccurrence = relatedToOccurrence;
+	}
+	
+	public boolean isFinished() {
+		return finished;
 	}
 
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
 	
 
 }

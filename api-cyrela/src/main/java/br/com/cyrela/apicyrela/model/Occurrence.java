@@ -22,8 +22,6 @@ public class Occurrence {
 	
 	private String description;
 	
-	private boolean finished;
-
 	public int getTicketId() {
 		return ticketId;
 	}
@@ -56,11 +54,4 @@ public class Occurrence {
 		this.description = description;
 	}
 
-	public boolean isFinished() {
-		return finished;
-	}
-
-	public void setFinished(boolean finished) {
-		this.finished = finished;
-	}
 }

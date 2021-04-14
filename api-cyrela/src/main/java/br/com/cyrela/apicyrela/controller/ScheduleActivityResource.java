@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,13 +26,19 @@ public class ScheduleActivityResource {
 	private ScheduledActivityRepository repo;
 	
 	@GetMapping
-	private List<ScheduledActivity> getAll(){
+	public List<ScheduledActivity> getAll(){
 		return repo.findAll();
 	}
 	
+	//Lista todas as atividades (assistências) já finalizadas
+	@GetMapping("finished") //http:localhost:8080/activity/finished
+	public List<ScheduledActivity> listAllFinished(@RequestParam(defaultValue = "true") boolean finished) {
+        return repo.findByFinished(finished);
+    }
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	private ScheduledActivity create(@RequestBody ScheduledActivity activity) {
+	public ScheduledActivity create(@RequestBody ScheduledActivity activity) {
 		return repo.save(activity);
 	}
 	
@@ -50,4 +57,6 @@ public class ScheduleActivityResource {
 	public void remove(@PathVariable int id) {
 		repo.deleteById(id);
 	}
+
+
 }

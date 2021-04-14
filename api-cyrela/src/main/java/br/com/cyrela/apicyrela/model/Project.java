@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 //Entidade de projetos. Nela será possível verificar custos e informações necessárias.
 @Entity
 @SequenceGenerator(name = "project", sequenceName = "SQ_PROJECT", allocationSize = 1)
@@ -18,14 +21,16 @@ public class Project {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project")
 	private int id;
 	
-	@ManyToOne
-	private ApartamentUnity unity;
+	@JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING, timezone = "GMT-3")
+	private Date initialDate;
+	
+	@JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING, timezone = "GMT-3")
+	private Date finalDate;
 	
 	private String description;
 	
-	private Date InitialDate;
-	
-	private Date finalDate;
+	@ManyToOne
+	private ApartamentUnity unity;
 	
 	private double cost;
 
@@ -62,11 +67,11 @@ public class Project {
 	}
 
 	public Date getInitialDate() {
-		return InitialDate;
+		return initialDate;
 	}
 
 	public void setInitialDate(Date initialDate) {
-		InitialDate = initialDate;
+		this.initialDate = initialDate;
 	}
 
 	public Date getFinalDate() {
@@ -76,5 +81,6 @@ public class Project {
 	public void setFinalDate(Date finalDate) {
 		this.finalDate = finalDate;
 	}
+
 	
 }

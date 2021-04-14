@@ -18,7 +18,7 @@ import br.com.cyrela.apicyrela.model.Flag;
 import br.com.cyrela.apicyrela.repository.FlagRepository;
 
 @RestController
-@RequestMapping("flag")
+@RequestMapping("cyrela/flag")
 public class FlagResource {
 	
 	@Autowired

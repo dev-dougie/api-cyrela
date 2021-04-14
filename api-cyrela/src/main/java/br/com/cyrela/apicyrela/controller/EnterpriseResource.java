@@ -18,7 +18,7 @@ import br.com.cyrela.apicyrela.model.Enterprise;
 import br.com.cyrela.apicyrela.repository.EnterpriseRepository;
 
 @RestController
-@RequestMapping("enterprise")
+@RequestMapping("cyrela/enterprise")
 public class EnterpriseResource {
 	
 	@Autowired
