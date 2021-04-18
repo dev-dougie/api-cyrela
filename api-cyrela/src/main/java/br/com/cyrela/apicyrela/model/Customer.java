@@ -1,10 +1,12 @@
 package br.com.cyrela.apicyrela.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -23,9 +25,8 @@ public class Customer {
 	
 	private String phone;
 	
-	
-	@ManyToOne
-	private ApartamentUnity ownership;
+	@OneToMany
+	private List <ApartamentUnity> ownership;
 
 	public int getId() {	
 		return id;
@@ -67,11 +68,11 @@ public class Customer {
 		this.phone = phone;
 	}
 	
-	public ApartamentUnity getOwnership() {
+	public List <ApartamentUnity> getOwnership() {
 		return ownership;
 	}
 
-	public void setOwnership(ApartamentUnity ownership) {
+	public void setOwnership( List <ApartamentUnity> ownership) {
 		this.ownership = ownership;
 	}
 	

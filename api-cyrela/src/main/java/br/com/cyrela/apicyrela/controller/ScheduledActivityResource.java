@@ -19,7 +19,7 @@ import br.com.cyrela.apicyrela.model.ScheduledActivity;
 import br.com.cyrela.apicyrela.repository.ScheduledActivityRepository;
 
 @RestController
-@RequestMapping("activity")
+@RequestMapping("app/activity")
 public class ScheduledActivityResource {
 	
 	@Autowired
@@ -31,8 +31,13 @@ public class ScheduledActivityResource {
 	}
 	
 	//Lista todas as atividades (assistências) já finalizadas
-	@GetMapping("finished") //http:localhost:8080/activity/finished
+	@GetMapping("finished") //http://localhost:8080/app/activity/finished
 	public List<ScheduledActivity> listAllFinished(@RequestParam(defaultValue = "true") boolean finished) {
+        return repo.findByFinished(finished);
+    }
+	
+	@GetMapping("notFinished") //http://localhost:8080/app/activity/notFinished
+	public List<ScheduledActivity> listAllNotFinished(@RequestParam(defaultValue = "false") boolean finished) {
         return repo.findByFinished(finished);
     }
 	

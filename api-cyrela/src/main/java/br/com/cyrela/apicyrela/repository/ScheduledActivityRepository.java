@@ -8,4 +8,5 @@ import br.com.cyrela.apicyrela.model.ScheduledActivity;
 
 public interface ScheduledActivityRepository extends JpaRepository<ScheduledActivity, Integer> {
 	List<ScheduledActivity> findByFinished(boolean finished);
+	List<String> findByInitialDateAndExpectedFinalDate(String initalDate, String expectedFinalDate);
 }

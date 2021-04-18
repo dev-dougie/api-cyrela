@@ -11,37 +11,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cyrela.apicyrela.model.Project;
-import br.com.cyrela.apicyrela.repository.ProjectRepository;
+import br.com.cyrela.apicyrela.model.Maintenance;
+import br.com.cyrela.apicyrela.repository.MaintenanceRepository;
 
 @RestController
-@RequestMapping("cyrela/project")
-public class ProjectResource {
+@RequestMapping("app/maintenance")
+public class MaintenanceResource {
 	
 	@Autowired
-	private ProjectRepository repo;
+	private MaintenanceRepository repo;
 	
 	@GetMapping
-	public List<Project> getAll(){
+	public List<Maintenance> getAll(){
 		return repo.findAll();
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public Project create(@RequestBody Project project) {
+	public Maintenance create(@RequestBody Maintenance project) {
 		return repo.save(project);
 	}
 	
 	@GetMapping("{id}")
-	public Project find(@PathVariable int id) {
+	public Maintenance find(@PathVariable int id) {
 		return repo.findById(id).get();
 	}
 	
 	@PutMapping("{id}")
-	public Project update(@RequestBody Project project, @PathVariable int id) {
+	public Maintenance update(@RequestBody Maintenance project, @PathVariable int id) {
 		project.setId(id);
 		return repo.save(project);
 	}
@@ -51,8 +52,9 @@ public class ProjectResource {
 		repo.deleteById(id);
 	}
 	
-	@GetMapping("/costGreaterThan={cost}")
-	public List<Project> listAll(@PathVariable double cost) {
+	@GetMapping("/costGreaterThan")
+	// http://localhost:8080/app/maintenance/costGreaterThan?cost=X.XX
+	public List<Maintenance> listAll(@RequestParam (required = true) double cost) {
         return repo.findByCostGreaterThan(cost);
     }
 }

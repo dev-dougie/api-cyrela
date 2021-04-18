@@ -18,7 +18,7 @@ import br.com.cyrela.apicyrela.model.Occurrence;
 import br.com.cyrela.apicyrela.repository.OccurrenceRepository;
 
 @RestController
-@RequestMapping("occurrence")
+@RequestMapping("app/occurrence")
 public class OccurenceResource {
 
 	@Autowired

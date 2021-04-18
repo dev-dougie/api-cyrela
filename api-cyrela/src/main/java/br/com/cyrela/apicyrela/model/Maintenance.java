@@ -13,11 +13,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 //Entidade de projetos. Nela será possível verificar custos e informações necessárias.
 @Entity
-@SequenceGenerator(name = "project", sequenceName = "SQ_PROJECT", allocationSize = 1)
-public class Project {
+@SequenceGenerator(name = "maintenance", sequenceName = "SQ_MAINTENENCE", allocationSize = 1)
+public class Maintenance {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "maintenance")
 	private int id;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy", shape = JsonFormat.Shape.STRING, timezone = "GMT-3")
